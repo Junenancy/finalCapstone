@@ -7,7 +7,12 @@ DATETIME_STRING_FORMAT = "%Y-%m-%d"
 
 # Function to load tasks from tasks.txt
 def load_tasks():
-    # Check if tasks.txt exists
+    """ 
+    Load tasks from tasks.txt file.
+    
+    Returns:
+        list: List of dictionaries representing tasks.
+    """
     if not os.path.exists("tasks.txt"):
         return []  # Return an empty list if file doesn't exist
     task_list = []
@@ -30,7 +35,12 @@ def load_tasks():
 
 # Function to save tasks to tasks.txt
 def save_tasks(task_list):
-    # Write tasks to tasks.txt
+    """
+    Save tasks to tasks.txt file.
+    
+    Args:
+        task_list (list): List of dictionaries representing tasks.
+    """
     with open("tasks.txt", "w") as task_file:
         for t in task_list:
             # Format task attributes and write to file
@@ -46,7 +56,13 @@ def save_tasks(task_list):
 
 # Function to register a new user
 def reg_user(username_password):
-    # Prompt for new username and password
+    """
+    Register a new user.
+    
+    Args:
+        username_password (dict): Dictionary containing usernames and passwords.
+    """
+
     new_username = input("New Username: ")
     if new_username in username_password:
         print("Username already exists. Please choose a different one.")
@@ -66,7 +82,12 @@ def reg_user(username_password):
 
 # Function to add a new task
 def add_task(task_list):
-    # Prompt for task details
+    """
+    Add a new task.
+    
+    Args:
+        task_list (list): List of dictionaries representing tasks.
+    """
     task_username = input("Name of person assigned to task: ")
     task_title = input("Title of Task: ")
     task_description = input("Description of Task: ")
@@ -95,7 +116,12 @@ def add_task(task_list):
 
 # Function to view all tasks
 def view_all(task_list):
-    # Display all tasks
+    """
+    View all tasks.
+    
+    Args:
+        task_list (list): List of dictionaries representing tasks.
+    """
     for index, task in enumerate(task_list, start=1):
         print(f"Task {index}:")
         print(f"Title: {task['title']}")
@@ -107,6 +133,14 @@ def view_all(task_list):
 
 #Function to a mark task as complete
 def mark_task_complete(task_list, user_tasks, task_index):
+    """
+    Mark a task as complete.
+    
+    Args:
+        task_list (list): List of dictionaries representing tasks.
+        user_tasks (list): List of dictionaries representing user's tasks.
+        task_index (int): Index of the task to mark as complete.
+    """
     task_to_complete = user_tasks[task_index]  # Get the task from user_tasks
     # Find the corresponding task in task_list and mark it as complete
     for index, task in enumerate(task_list):
@@ -118,7 +152,16 @@ def mark_task_complete(task_list, user_tasks, task_index):
     print("Error: Task not found in task list.")
 
 # Function to edit a task
-def edit_task(task_list, task_index):
+def edit_task(task_list, user_tasks, selected_task, task_index):
+    """
+    Edit a task.
+    
+    Args:
+        task_list (list): List of dictionaries representing tasks.
+        user_tasks (list): List of dictionaries representing user's tasks.
+        selected_task (dict): The task to be edited.
+        task_index (int): Index of the task to be edited.
+    """
     selected_task = task_list[user_tasks.index(selected_task)]
     
     print("Select which field you want to edit:")
@@ -146,7 +189,13 @@ def edit_task(task_list, task_index):
 
 # Function to view tasks assigned to the current user
 def view_mine(curr_user, task_list):
-    # Display tasks assigned to the current user
+    """
+    View tasks assigned to the current user.
+    
+    Args:
+        curr_user (str): Current user's username.
+        task_list (list): List of dictionaries representing tasks.
+    """
     user_tasks = [task for task in task_list if task['username'] == curr_user]
     if not user_tasks:
         print("No tasks assigned to you.")
@@ -175,7 +224,7 @@ def view_mine(curr_user, task_list):
                     if edit_choice == 'complete':
                         mark_task_complete(task_list, user_tasks, task_index)
                     elif edit_choice == 'edit':
-                        edit_task(task_list, task_index)
+                        edit_task(task_list, user_tasks, selected_task, task_index)
                     else:
                         print("Invalid input. Please enter 'complete' or 'edit'.")
             else:
@@ -186,7 +235,13 @@ def view_mine(curr_user, task_list):
 
 # Function to generate reports
 def generate_reports(username_password, task_list):
-    # Task Overview Report
+    """
+    Generate reports.
+    
+    Args:
+        username_password (dict): Dictionary containing usernames and passwords.
+        task_list (list): List of dictionaries representing tasks.
+    """
     total_tasks = len(task_list)
     completed_tasks = sum(1 for task in task_list if task['completed'])
     incomplete_tasks = total_tasks - completed_tasks
@@ -230,10 +285,18 @@ def generate_reports(username_password, task_list):
                 report_file.write("Percentage of completed tasks: 0.00%\n")
                 report_file.write("Percentage of incomplete tasks: 0.00%\n")
                 report_file.write("Percentage of overdue tasks: 0.00%\n")
+    print("Reports generated successfully!")
 
 # Function to display statistics
 def display_statistics(curr_user, username_password, task_list):
-    # Check if user is admin
+    """
+    Display statistics.
+    
+    Args:
+        curr_user (str): Current user's username.
+        username_password (dict): Dictionary containing usernames and passwords.
+        task_list (list): List of dictionaries representing tasks.
+    """
     if curr_user != 'admin':
         print("You do not have permission to view statistics.")
         return
@@ -250,6 +313,9 @@ def display_statistics(curr_user, username_password, task_list):
 
 # Main function
 def main():
+    """
+    Main function to run the task manager program.
+    """
     task_list = load_tasks()
     username_password = {}
 

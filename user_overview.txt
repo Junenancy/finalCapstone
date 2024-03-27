@@ -1,6 +1,6 @@
 User Overview Report
-Total number of users: 4
-Total number of tasks: 4
+Total number of users: 3
+Total number of tasks: 5
 
 admin:
 Total number of tasks assigned: 0
@@ -10,22 +10,15 @@ Percentage of incomplete tasks: 0.00%
 Percentage of overdue tasks: 0.00%
 
 Juliet:
-Total number of tasks assigned: 1
-Percentage of total tasks assigned: 25.00%
-Percentage of completed tasks: 100.00%
-Percentage of incomplete tasks: 0.00%
+Total number of tasks assigned: 2
+Percentage of total tasks assigned: 40.00%
+Percentage of completed tasks: 50.00%
+Percentage of incomplete tasks: 50.00%
 Percentage of overdue tasks: 0.00%
 
 June:
 Total number of tasks assigned: 1
-Percentage of total tasks assigned: 25.00%
+Percentage of total tasks assigned: 20.00%
 Percentage of completed tasks: 100.00%
-Percentage of incomplete tasks: 0.00%
-Percentage of overdue tasks: 0.00%
-
-Henry:
-Total number of tasks assigned: 0
-Percentage of total tasks assigned: 0.00%
-Percentage of completed tasks: 0.00%
 Percentage of incomplete tasks: 0.00%
 Percentage of overdue tasks: 0.00%
