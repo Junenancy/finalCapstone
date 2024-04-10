@@ -183,6 +183,8 @@ def edit_task(task_list, user_tasks, selected_task, task_index):
     else:
         print("Invalid choice.")
         return
+
+    task_list[user_tasks.index(selected_task)] = selected_task
     
     save_tasks(task_list)
     print("Task successfully edited.")
@@ -322,8 +324,9 @@ def main():
     # Read user credentials from user.txt
     with open("user.txt", 'r') as user_file:
         for user in user_file:
-            username, password = user.strip().split(';')
-            username_password[username] = password
+            if user.strip():
+                username, password = user.strip().split(';')
+                username_password[username] = password
 
     # Login
     while True:
